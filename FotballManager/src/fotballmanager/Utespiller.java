@@ -117,7 +117,7 @@ public class Utespiller extends Spiller {
 
     @Override
     public void skrivInfo() {
-        super.skrivInfo(); //To change body of generated methods, choose Tools | Templates.
+        System.out.format("%15d%18s%18s%18s%15s%15s%15s%15s%15s%15s\n", super.getSpillernr(), super.getFornavn(), super.getEtternavn(), super.getPosisjon(), kondisjon, takling, dribling, avslutning, kreativitet, hurtighet);
     }
     
     

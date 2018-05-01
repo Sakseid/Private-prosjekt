@@ -50,27 +50,48 @@ public class Lag {
         lagnavn = db.getLagnavn();
         for(int i=0; i<18; i++){
             if (i<3){
-                Keeper keeper = new Keeper("Keeper", db.getTall(100), db.getEtternavn(), db.getFornavn(), db.getTall(100), db.getTall(100), db.getTall(100));
+                Keeper keeper = new Keeper("Keeper", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
                 spillerstall.add(keeper);
             }
             else if (i>2&&i<9){
-                Utespiller spiller = new Utespiller("Forsvar", db.getTall(100), db.getEtternavn(), db.getFornavn(), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100));
+                Utespiller spiller = new Utespiller("Forsvar", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
                 spillerstall.add(spiller);
             }
             else if (i>8&&i<15){
-                Utespiller spiller = new Utespiller("Midtbane", db.getTall(100), db.getEtternavn(), db.getFornavn(), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100));
+                Utespiller spiller = new Utespiller("Midtbane", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
                 spillerstall.add(spiller);
             }
             else if (i>14&&i<18){
-                Utespiller spiller = new Utespiller("Spiss", db.getTall(100), db.getEtternavn(), db.getFornavn(), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100), db.getTall(100));
+                Utespiller spiller = new Utespiller("Spiss", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
                 spillerstall.add(spiller);
             }
         }
     }
     
-    public void skrivSpillere(){
-        for(Spiller s : spillerstall){
-            s.skrivInfo();
+    private void skrivKeepere(){
+        System.out.println("Keepere");
+        System.out.format("%15s%18s%18s%15s%15s%15s\n", "Nr", "Fornavn", "Etternavn", "Reaksjon", "Feltarbeid", "Aggresjon");
+        for (Spiller s : spillerstall){
+            if (s.getPosisjon().contains("Keeper")){
+                s.skrivInfo();
+            }
         }
     }
+    
+    private void skrivUtespillere(){
+        System.out.println("Utespillere");
+        System.out.format("%15s%18s%18s%18s%15s%15s%15s%15s%15s%15s\n", "Nr", "Fornavn", "Etternavn", "Posisjon", "Kondisjon", "Takling", "Dribling", "Avslutning", "Kreativitet", "Hurtighet");
+        for (Spiller s : spillerstall){
+            if (!s.getPosisjon().equalsIgnoreCase("Keeper")){
+                s.skrivInfo();
+            }
+        }
+    }
+    
+    public void skrivSpillere(){
+        skrivKeepere();
+        skrivUtespillere();
+        
+    }
 }
+

@@ -58,6 +58,6 @@ public abstract class Spiller {
     }
     
     public void skrivInfo(){
-        System.out.println(getSpillernr() + ": " + getFornavn() + " " + getEtternavn() + " " + getPosisjon());
+                    
     }
 }

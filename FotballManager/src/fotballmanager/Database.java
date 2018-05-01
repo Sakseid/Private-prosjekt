@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Klasse som inneholder diverse navn og verktøy som brukes i spillet
  */
 package fotballmanager;
 
@@ -13,15 +11,15 @@ import java.util.Random;
  * @author vegar
  */
 public class Database {
-    private ArrayList fornavn;
-    private ArrayList etternavn;
-    private ArrayList lagnavn;
+    private ArrayList<String> fornavn;
+    private ArrayList<String> etternavn;
+    private ArrayList<String> lagnavn;
     private Random rnd;
 
     public Database() {
-        fornavn = new ArrayList<String>();
-        etternavn = new ArrayList<String>();
-        lagnavn = new ArrayList<String>();
+        fornavn = new ArrayList<>();
+        etternavn = new ArrayList<>();
+        lagnavn = new ArrayList<>();
         fyllFornavn();
         fyllEtternavn();
         fyllLagnavn();
@@ -30,6 +28,8 @@ public class Database {
     
     /**
      * Metode for å fylle arraylista med fornavn
+     * 
+     * For å unngå duplisering, lagre navn i en kø, evt en arraylist som lagrer brukte navn
      */
     private void fyllFornavn(){
             fornavn.add("Håvard");
@@ -63,6 +63,8 @@ public class Database {
             fornavn.add("Øystein");
             fornavn.add("Magne");
             fornavn.add("Torgeir");
+            fornavn.add("Michael");
+            fornavn.add("Karsten");
     }
     
     /**
@@ -100,6 +102,16 @@ public class Database {
         etternavn.add("Endresen");
         etternavn.add("Opdal");
         etternavn.add("Knudsen");
+        etternavn.add("Hansen");
+        etternavn.add("Torp");
+        etternavn.add("Lund");
+        etternavn.add("Henriksen");
+        etternavn.add("Backstad");
+        etternavn.add("Stangeland");
+        etternavn.add("Lie Andersen");
+        etternavn.add("Andreassen");
+        etternavn.add("Axelsen");
+        etternavn.add("Haukås");
     }
     
     /**
@@ -112,7 +124,7 @@ public class Database {
         lagnavn.add("Real Mandal");
         lagnavn.add("Søm United");
         lagnavn.add("Søgne Wednesday");
-        lagnavn.add("Vestvik");
+        lagnavn.add("Vestvik Rangers");
         lagnavn.add("FK Lund");
         lagnavn.add("Odderøya FK");
         lagnavn.add("Knebuksekameratene");
@@ -122,6 +134,7 @@ public class Database {
         lagnavn.add("Nupen Park Rangers");
         lagnavn.add("Oldham");
         lagnavn.add("Høvåg City");
+        lagnavn.add("Sporting Lista");
     }
     
     
@@ -130,8 +143,8 @@ public class Database {
      * @return Et tilfeldig fornavn
      */
     public String getFornavn(){
-        int i = fornavn.size();
-        int r = getTall(i);
+        int i = fornavn.size()-1;
+        int r = getTall(0, i);
         String navn = (String) fornavn.get(r);
         return navn;
     }
@@ -141,8 +154,8 @@ public class Database {
      * @return Et tilfeldig etternavn
      */
     public String getEtternavn(){
-        int i = etternavn.size();
-        int r = getTall(i);
+        int i = etternavn.size()-1;
+        int r = getTall(0, i);
         String navn = (String) etternavn.get(r);
         return navn;
     }
@@ -152,18 +165,19 @@ public class Database {
      * @return Et tilfeldig lagnavn
      */
     public String getLagnavn(){
-        int i = lagnavn.size();
-        int r = getTall(i);
-        String navn = (String) lagnavn.get(r);
+        int i = lagnavn.size()-1;
+        int r = getTall(0, i);
+        System.out.println(i + " " + r);
+        String navn = (String) lagnavn.remove(r);
         return navn;
     }
     
     /**
-     * Returnerer et tall fra 0 -99
-     * @return Tall fra 0-99
+     * Returnerer et tall fra 0 - t
+     * @return Tall fra 0 - t
      */
-    public int getTall(int t){
-        int i = rnd.nextInt(t);
+    public int getTall(int min, int max){
+        int i = rnd.nextInt((max - min) + 1) + min;
                 return i;
     }
 }
