@@ -15,11 +15,13 @@ public class Liga {
     private String navn;
     private ArrayList<Sesong> sesonger;
     private int sesongnr;
+    private Database db;
 
     public Liga(String navn) {
         this.navn = navn;
         sesongnr = 1;
         this.sesonger = new ArrayList<>();
+        db = new Database();
     }
 
     public String getNavn() {
@@ -31,7 +33,7 @@ public class Liga {
     }
     
     public Sesong opprettSesong(){
-        Sesong sesong = new Sesong(sesongnr);
+        Sesong sesong = new Sesong(sesongnr, db);
         sesonger.add(sesong);
         return sesong;
     }

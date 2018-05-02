@@ -18,11 +18,11 @@ public class Lag {
     private ArrayList<Spiller> innbyttere;
     private Database db;
 
-    public Lag() {
+    public Lag(Database db) {
         spillerstall = new ArrayList<>();
         startelver = new ArrayList<>();
         innbyttere = new ArrayList<>();
-        db = new Database();
+        this.db = db;
         opprettLag();
     }
     

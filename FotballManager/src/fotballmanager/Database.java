@@ -4,6 +4,8 @@
 package fotballmanager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -13,15 +15,19 @@ import java.util.Random;
 public class Database {
     private ArrayList<String> fornavn;
     private ArrayList<String> etternavn;
-    private ArrayList<String> lagnavn;
+    private ArrayList<String> lagnavnArray;
+    private LinkedList<String> lagnavn;
     private Random rnd;
 
     public Database() {
         fornavn = new ArrayList<>();
         etternavn = new ArrayList<>();
-        lagnavn = new ArrayList<>();
+        lagnavnArray = new ArrayList<>();
+        lagnavn = new LinkedList<>();
         fyllFornavn();
         fyllEtternavn();
+        fyllLagnavnArray();
+        Collections.shuffle(lagnavnArray);
         fyllLagnavn();
         rnd = new Random();
     }
@@ -29,7 +35,6 @@ public class Database {
     /**
      * Metode for å fylle arraylista med fornavn
      * 
-     * For å unngå duplisering, lagre navn i en kø, evt en arraylist som lagrer brukte navn
      */
     private void fyllFornavn(){
             fornavn.add("Håvard");
@@ -115,26 +120,37 @@ public class Database {
     }
     
     /**
-     * Metode for å fylle arraylista med lagnavn
+     * Metode for å fylle arraylista med lagnavnArray
+ 
+ Duplisering av navn, lagre navnene i en kø!
+     */
+    private void fyllLagnavnArray(){
+        lagnavnArray.add("Dynamo Auklandshamn");
+        lagnavnArray.add("Lokomotiv Ålefjær");
+        lagnavnArray.add("Sporting Gimlekollen");
+        lagnavnArray.add("Real Mandal");
+        lagnavnArray.add("Søm United");
+        lagnavnArray.add("Søgne Wednesday");
+        lagnavnArray.add("Vestvik Rangers");
+        lagnavnArray.add("FK Lund");
+        lagnavnArray.add("Odderøya FK");
+        lagnavnArray.add("Knebuksekameratene");
+        lagnavnArray.add("Sødal FF");
+        lagnavnArray.add("Lillesand SK");
+        lagnavnArray.add("Grimstadspor");
+        lagnavnArray.add("Nupen Park Rangers");
+        lagnavnArray.add("Oldham");
+        lagnavnArray.add("Høvåg City");
+        lagnavnArray.add("Sporting Lista");
+    }
+    
+    /**
+     * Metode for å fylle køen med lagnavn
      */
     private void fyllLagnavn(){
-        lagnavn.add("Dynamo Auklandshamn");
-        lagnavn.add("Lokomotiv Ålefjær");
-        lagnavn.add("Sporting Gimlekollen");
-        lagnavn.add("Real Mandal");
-        lagnavn.add("Søm United");
-        lagnavn.add("Søgne Wednesday");
-        lagnavn.add("Vestvik Rangers");
-        lagnavn.add("FK Lund");
-        lagnavn.add("Odderøya FK");
-        lagnavn.add("Knebuksekameratene");
-        lagnavn.add("Sødal FF");
-        lagnavn.add("Lillesand SK");
-        lagnavn.add("Grimstadspor");
-        lagnavn.add("Nupen Park Rangers");
-        lagnavn.add("Oldham");
-        lagnavn.add("Høvåg City");
-        lagnavn.add("Sporting Lista");
+        for (String s : lagnavnArray){
+            lagnavn.add(s);
+        }
     }
     
     
@@ -161,15 +177,12 @@ public class Database {
     }
     
     /**
-     * Returnerer et tilfeldig lagnavn
-     * @return Et tilfeldig lagnavn
+     * Returnerer et tilfeldig lagnavnArray
+     * @return Et tilfeldig lagnavnArray
      */
     public String getLagnavn(){
-        int i = lagnavn.size()-1;
-        int r = getTall(0, i);
-        System.out.println(i + " " + r);
-        String navn = (String) lagnavn.remove(r);
-        return navn;
+        System.out.println(lagnavn.size());
+        return lagnavn.poll();
     }
     
     /**

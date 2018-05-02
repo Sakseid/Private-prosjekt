@@ -26,6 +26,7 @@ public class FotballManager {
         Sesong sesong = liga.opprettSesong();
         liga.plussSesongnr();
         sesong.leggTilLag(10);
+        sesong.skrivAlleLag();
         
     }
     
