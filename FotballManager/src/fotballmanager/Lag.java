@@ -91,7 +91,16 @@ public class Lag {
     public void skrivSpillere(){
         skrivKeepere();
         skrivUtespillere();
-        
     }
+
+    public ArrayList<Spiller> getStartelver() {
+        return startelver;
+    }
+
+    public ArrayList<Spiller> getInnbyttere() {
+        return innbyttere;
+    }
+    
+    
 }
 
