@@ -13,10 +13,14 @@ package monomolsimulator;
 public class Felt {
     private String navn;
     private int nr;
+    private int besok;
 
     public Felt(String navn, int nr) {
         this.navn = navn;
         this.nr = nr;
+        if (this.navn == "Start"){
+            besok++;
+        }
     }
 
     public String getNavn() {
@@ -33,5 +37,17 @@ public class Felt {
 
     public void setNr(int nr) {
         this.nr = nr;
+    }
+
+    public int getBesok() {
+        return besok;
+    }
+
+    public void setBesok() {
+        besok++;
+    }
+    
+    public void skrivBesok(){
+        System.out.format("%25s%10d\n", getNavn(), getBesok());
     }
 }

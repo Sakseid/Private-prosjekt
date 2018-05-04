@@ -20,6 +20,7 @@ public class Brett {
         brett = new ArrayList<>();
         gatenavn = new HashMap<>();
         fyllGatenavn();
+        lagBrett();
     }
     
     private void fyllGatenavn(){
@@ -71,4 +72,10 @@ public class Brett {
             brett.add(f);
         }
     }
+
+    public ArrayList getBrett() {
+        return brett;
+    }
+    
+    
 }
