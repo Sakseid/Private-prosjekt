@@ -37,23 +37,34 @@ public class Simulator {
     
     private void spill(){
         ArrayList<Felt> felter = brett.getBrett();
+        Kort k;
         for (int i = 0 ; i < runder ; i++){
             int t = kastTerning();
             if (!fengsel){
-                for (int k = 0; k < t ; k++){
+                for (int j = 0; j < t ; j++){
                     posisjon++;
                     if (posisjon==40){
                         posisjon = 0;
                     }
                 }
+                if (posisjon == 30){
+                    posisjon = 10;
+                    fengsel = true;
+                }
                 felter.get(posisjon).setBesok();
+                if (felter.get(posisjon).getNavn().equalsIgnoreCase("Prøv lykken")){
+                    k = kortbunke.getBunke().pop();
+                    if (kortbunke.getBunke().size()==0){
+                        kortbunke = new Kortbunke();
+                    }
+                    sjekkKort(k);
+                }
                 if (toLike){
+                    if (!fengsel){
                     i--;
+                    }
                     toLike = false;
                 }
-                if (posisjon == 30){
-                    fengsel = true;
-                    }
             }
             else {
                 int f = 0;
@@ -89,6 +100,38 @@ public class Simulator {
             forsok=0;
         }
         return t1+t2;
+    }
+    
+    private void sjekkKort(Kort k){
+        if (k.isBaat()){
+            if (posisjon>5||posisjon>35){
+                posisjon = 5;
+            }
+            if (posisjon>15&&posisjon>5){
+                posisjon = 15;
+            }
+            if (posisjon>15&&posisjon>25){
+                posisjon = 25;
+            }
+            if (posisjon>25&&posisjon>35){
+                posisjon = 35;
+            }
+        }
+        if (k.isFengsel()){
+            posisjon = 10;
+        }
+        if (k.isNedreSlottsgate()){
+            posisjon = 12;
+        }
+        if (k.isSlemdal()){
+            posisjon = 24;
+        }
+        if (k.isSlottsplassen()){
+            posisjon = 39;
+        }
+        if (k.isStart()){
+            posisjon = 0;
+        }
     }
     
     

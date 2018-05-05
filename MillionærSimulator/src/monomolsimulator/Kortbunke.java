@@ -46,4 +46,10 @@ public class Kortbunke {
     public void stokkBunke(){
         Collections.shuffle(bunke);
     }
+
+    public Stack<Kort> getBunke() {
+        return bunke;
+    }
+    
+    
 }

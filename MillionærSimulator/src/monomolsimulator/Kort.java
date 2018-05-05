@@ -8,13 +8,13 @@ package monomolsimulator;
  * @author vegar
  */
 public class Kort {
-    boolean fengsel;
-    boolean start;
-    boolean slemdal;
-    boolean baat;
-    boolean slottsplassen;
-    boolean nedreSlottsgate;
-    boolean utAvFengsel;
+    private boolean fengsel;
+    private boolean start;
+    private boolean slemdal;
+    private boolean baat;
+    private boolean slottsplassen;
+    private boolean nedreSlottsgate;
+    private boolean utAvFengsel;
 
     public Kort() {
     }
