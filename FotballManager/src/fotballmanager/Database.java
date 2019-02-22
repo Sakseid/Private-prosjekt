@@ -6,7 +6,6 @@ package fotballmanager;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  *
@@ -17,7 +16,7 @@ public class Database {
     private ArrayList<String> etternavn;
     private ArrayList<String> lagnavnArray;
     private LinkedList<String> lagnavn;
-    private Random rnd;
+    private RndGen rnd;
 
     public Database() {
         fornavn = new ArrayList<>();
@@ -29,7 +28,7 @@ public class Database {
         fyllLagnavnArray();
         Collections.shuffle(lagnavnArray);
         fyllLagnavn();
-        rnd = new Random();
+        rnd = new RndGen();
     }
     
     /**
@@ -160,7 +159,7 @@ public class Database {
      */
     public String getFornavn(){
         int i = fornavn.size()-1;
-        int r = getTall(0, i);
+        int r = rnd.getTall(0, i);
         String navn = (String) fornavn.get(r);
         return navn;
     }
@@ -171,7 +170,7 @@ public class Database {
      */
     public String getEtternavn(){
         int i = etternavn.size()-1;
-        int r = getTall(0, i);
+        int r = rnd.getTall(0, i);
         String navn = (String) etternavn.get(r);
         return navn;
     }
@@ -183,14 +182,5 @@ public class Database {
     public String getLagnavn(){
         System.out.println(lagnavn.size());
         return lagnavn.poll();
-    }
-    
-    /**
-     * Returnerer et tall fra 0 - t
-     * @return Tall fra 0 - t
-     */
-    public int getTall(int min, int max){
-        int i = rnd.nextInt((max - min) + 1) + min;
-                return i;
     }
 }

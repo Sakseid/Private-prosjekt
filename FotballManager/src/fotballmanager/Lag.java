@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fotballmanager;
 
 import java.util.ArrayList;
 
 /**
- *
+ *Klasse for å opprette og adminisrere lag
+ * 
  * @author vegar
  */
 public class Lag {
@@ -17,12 +13,14 @@ public class Lag {
     private ArrayList<Spiller> startelver;
     private ArrayList<Spiller> innbyttere;
     private Database db;
+    private RndGen rnd;
 
     public Lag(Database db) {
         spillerstall = new ArrayList<>();
         startelver = new ArrayList<>();
         innbyttere = new ArrayList<>();
         this.db = db;
+        rnd = new RndGen();
         opprettLag();
     }
     
@@ -50,19 +48,19 @@ public class Lag {
         lagnavn = db.getLagnavn();
         for(int i=0; i<18; i++){
             if (i<3){
-                Keeper keeper = new Keeper("Keeper", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
+                Keeper keeper = new Keeper("Keeper", rnd.getTall(1, 100), db.getEtternavn(), db.getFornavn(), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100));
                 spillerstall.add(keeper);
             }
             else if (i>2&&i<9){
-                Utespiller spiller = new Utespiller("Forsvar", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
+                Utespiller spiller = new Utespiller("Forsvar", rnd.getTall(1, 100), db.getEtternavn(), db.getFornavn(), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100));
                 spillerstall.add(spiller);
             }
             else if (i>8&&i<15){
-                Utespiller spiller = new Utespiller("Midtbane", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
+                Utespiller spiller = new Utespiller("Midtbane", rnd.getTall(1, 100), db.getEtternavn(), db.getFornavn(), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100));
                 spillerstall.add(spiller);
             }
             else if (i>14&&i<18){
-                Utespiller spiller = new Utespiller("Spiss", db.getTall(1, 100), db.getEtternavn(), db.getFornavn(), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100), db.getTall(1, 100));
+                Utespiller spiller = new Utespiller("Spiss", rnd.getTall(1, 100), db.getEtternavn(), db.getFornavn(), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100), rnd.getTall(1, 100));
                 spillerstall.add(spiller);
             }
         }
